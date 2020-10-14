@@ -43,7 +43,8 @@ class ContinuousEntropyModelBase(tf.Module, metaclass=abc.ABCMeta):
     """Initializer.
 
     Arguments:
-      prior: A `tfp.distributions.Distribution` object. A density model fitting
+      prior: 用加性均匀噪声拟合瓶颈数据的边际分布的密度模型
+        A `tfp.distributions.Distribution` object. A density model fitting
         the marginal distribution of the bottleneck data with additive uniform
         noise, which is shared a priori between the sender and the receiver. For
         best results, the distribution should be flexible enough to have a
@@ -57,8 +58,9 @@ class ContinuousEntropyModelBase(tf.Module, metaclass=abc.ABCMeta):
         to `False`, these two methods will not be accessible.
       likelihood_bound: Float. Lower bound for likelihood values, to prevent
         training instabilities.
-      tail_mass: Float. Approximate probability mass which is range encoded with
-        less precision, by using a Golomb-like code.
+      tail_mass: Float. 在一定范围内编码的精度较低的近似概率质量。
+        Approximate probability mass which is range encoded with
+        less precision, by using a Golomb-like code. 
       range_coder_precision: Integer. Precision passed to the range coding op.
       no_variables: Boolean. If True, creates range coding tables as `Tensor`s
         rather than `Variable`s.
